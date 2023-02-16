@@ -1,0 +1,46 @@
+1) In C programming language we are not allowed to assign a string to struct variable.( e.name="Pradeep") 
+
+We have to use strcpy(char *dest, const char *source) function for assigning a string
+
+For example: strcpy(e.name, "Pradeep");
+
+2) We can reduce the struct size using     #pragma pack(1) as header file. 
+
+3) num = num << 2 equal to the num = num * (2^2). And the new value of num is 22* (2 ^ 2) = 88,
+ which is equal to the binary form 1011000.
+ 
+4)COMMON MISTAKES IN POINTER:
+ int c, *pc;
+
+// pc is address but c is not
+pc = c;  // Error
+
+// &c is address but *pc is not
+*pc = &c;  // Error
+
+// both &c and pc are addresses
+pc = &c;  // Not an error
+
+// both c and *pc are values 
+*pc = c;  // Not an error
+
+
+#include <stdio.h>  // here no error will be there bcz int*p=&c is equal to int *p; p=&c;
+int main() {
+   int c = 5;
+   int *p = &c;
+
+   printf("%d", *p);  // 5
+   return 0; 
+}
+
+5) In POINTER concept *(ptr + i) is same as ptr[i].  
+
+6)Void Pointer: It is a form of pointer which is used to point another variable of any data type.
+ So, it can store the address of a variable of any data type.
+ 
+ 7) While declaring value to pointer array 
+ ptr1[0] = 1;        
+*(array + 1) = 2;   // all are same 
+*(1 + array) = 2;  
+array[2] = 4; 

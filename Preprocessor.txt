@@ -1,0 +1,13 @@
+#include <stdio.h>
+#define PIE
+float a =0;
+int main ()  
+{  
+#ifdef PIE
+a = 3.14;
+#else
+printf("enter pie value: ");
+scanf("%f",&a);
+#endif
+printf("value is= %f",a);
+return 0;
