@@ -1,0 +1,77 @@
+1) In C programming language we are not allowed to assign a string to struct variable.( e.name="Pradeep") 
+
+We have to use strcpy(char *dest, const char *source) function for assigning a string
+
+For example: strcpy(e.name, "Pradeep");
+
+2) We can reduce the struct size using     #pragma pack(1) as header file. 
+
+3) num = num << 2 equal to the num = num * (2^2). And the new value of num is (i.e 22 << 2) 22* (2 ^ 2) = 88,
+ which is equal to the binary form 1011000.
+ 
+4)COMMON MISTAKES IN POINTER:
+ int c, *pc;
+
+// pc is address but c is not
+pc = c;  // Error
+
+// &c is address but *pc is not
+*pc = &c;  // Error
+
+// both &c and pc are addresses
+pc = &c;  // Not an error
+
+// both c and *pc are values 
+*pc = c;  // Not an error
+
+
+#include <stdio.h>  // here no error will be there bcz int*p=&c is equal to int *p; p=&c;
+int main() {
+   int c = 5;
+   int *p = &c;
+
+   printf("%d", *p);  // 5
+   return 0; 
+}
+
+5) In POINTER concept *(ptr + i) is same as ptr[i].   [IMPORTANT]
+
+6)Void Pointer: It is a form of pointer which is used to point another variable of any data type.
+ So, it can store the address of a variable of any data type.
+
+ ex: void *ptr;
+     ptr = &i;
+ while printing the i value you must use p("%d",*( (int*)ptr) )
+
+ 7) While declaring value to pointer array 
+ ptr1[0] = 1;        
+*(array + 1) = 2;   // all are same 
+*(1 + array) = 2;  // *(array) means array[0]
+array[2] = 4; 
+
+8) how to find array count in c
+
+int myArray[] = {1, 2, 3, 4, 5};
+int arraySize = sizeof(myArray) / sizeof(myArray[0]); // 5
+
+In this example, sizeof(myArray) returns the total size of the array in bytes, 
+while sizeof(myArray[0]) returns the size of one element in bytes. 
+Dividing the total size by the size of one element gives us the number of elements in the array.
+
+9) Preprocessor language:
+
+#define NAME(a,b) \printf(#a" "#b ) // Wrong error: stray ‘\’ in program
+
+#define NAME(a,b) \                // Correct format and there should be no space between \ and printf like these \printf()
+printf(#a" "#b )
+
+Program:
+#include <stdio.h>
+
+#define NAME(a,b) \
+printf(#a" "#b )
+
+int main()
+{
+    NAME(Pradeep, Sriram);  // In here There is no need to mention the str like this "Pradeep"
+}

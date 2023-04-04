@@ -1,0 +1,53 @@
+*********************************** <string.h>**************************************
+1) memcmp(const void *str1, const void *str2, size_t n)
+
+Eg:
+if Return value < 0 then it indicates str1 is less than str2.
+
+if Return value > 0 then it indicates str2 is less than str1.
+
+if Return value = 0 then it indicates str1 is equal to str2.
+
+
+2) strstr() function in C
+Syntax: 
+    char *strstr (const char *s1, const char *s2);
+
+    Parameters:
+    s1: This is the main string to be examined.
+    s2: This is the sub-string to be searched in s1 string.
+
+Brief:
+    This function takes two strings s1 and s2 as an argument and finds the first occurrence of the sub-string s2 in the string s1. 
+    The process of matching does not include the terminating null-characters(‘\0’), but function stops there. 
+
+Return value:
+    Return Value: This function returns a pointer points to the first character of the found s2 in s1 
+    otherwise a null pointer if s2 is not present in s1. If s2 points to an empty string, s1 is returned.
+
+3) strncpy() function in C
+Syntax: 
+    strncpy(destination_string,input_string+pos,len);
+
+Brief:
+    We can also use strncpy() function in C to copy the substring from a given input string. 
+It takes 3 parameters which are the destination string, source string along with starting index and length of the substring 
+which we need to copy.
+
+Here pos is the starting index and len is the length of the substring which we want to copy.
+
+4) strtok() function in C 
+Syntax:
+    char *strtok(char *str, const char *delim)
+
+Brief:
+ *) str − The contents of this string are modified and broken into smaller strings (tokens).
+
+ *) delim − This is the C string containing the delimiters. These may vary from one call to another.
+
+ The strtok function returns a pointer to the next token in the string, or NULL if there are no more tokens. 
+ Each time strtok is called with the same string, it returns the next token in the string.
+
+ The strtok function works by modifying the input string. It replaces the delimiter character with a null character ('\0') 
+ and returns a pointer to the beginning of the token. When strtok is called again with the same input string, 
+ it continues from where it left off and searches for the next occurrence of the delimiter character.
