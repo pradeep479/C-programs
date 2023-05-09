@@ -58,9 +58,9 @@ In this example, sizeof(myArray) returns the total size of the array in bytes,
 while sizeof(myArray[0]) returns the size of one element in bytes. 
 Dividing the total size by the size of one element gives us the number of elements in the array.
 
-9) Preprocessor language:
+9) PREPROCESSOR language:
 
-#define NAME(a,b) \printf(#a" "#b ) // Wrong error: stray ‘\’ in program
+#define NAME(a,b) \printf(#a" "#b ) // Wrong error: stray '\' in program
 
 #define NAME(a,b) \                // Correct format and there should be no space between \ and printf like these \printf()
 printf(#a" "#b )
@@ -75,3 +75,53 @@ int main()
 {
     NAME(Pradeep, Sriram);  // In here There is no need to mention the str like this "Pradeep"
 }
+
+10) BIT SHIFT:
+ In general, if we shift a number by n times to RIGHT, the output will be number / (2^n) .
+Ex: 
+    = 128 >> 5
+    = 128 / (2^5)
+    =128/32
+    =4.
+
+    If we sfiht a number by n times to LEFT, output will be number * (2^n)
+Ex:
+    = 25 << 2
+    = 25 * (2^2)
+    = 25*4
+    = 100.
+
+11) Arduino Map function formula:
+long map(long x, long in_min, long in_max, long out_min, long out_max) {
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+12) HEX -> DEC CONVERSION formula:
+    Each digit of the hexadecimal number is multiplied with the base 16. 
+We will store the result of this multiplication in a particular variable.
+Ex:
+    2AB (Hexadecimal value) = 2*(16^2) + 10*(16^1) + 11*(16^0)
+                            = 512 + 160 + 11
+                            = 683 (Decimal value)
+
+13) MALLOC FUNCTION IN C:
+    ptr=(cast-type*)malloc(byte-size)  
+
+    CALLOC IN C:
+    void *calloc (size_t number_of_block, size_t size_of_block)
+
+14) STRTOL in C:
+Convert string to long integer
+
+#include <stdlib.h>
+Syntax: long int strtol(const char *str, char **endptr, int base)
+
+Parameters
+str − This is the string containing the representation of an integral number.
+
+endptr − This is the reference to an object of type char*, whose value is set by the function to the next character in str after the numerical value.
+
+base − This is the base, which must be between 2 and 36 inclusive, or be the special value 0.
+
+Return Value
+This function returns the converted integral number as a long int value, else zero value is returned.
