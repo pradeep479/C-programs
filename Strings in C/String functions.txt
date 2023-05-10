@@ -51,3 +51,21 @@ Brief:
  The strtok function works by modifying the input string. It replaces the delimiter character with a null character ('\0') 
  and returns a pointer to the beginning of the token. When strtok is called again with the same input string, 
  it continues from where it left off and searches for the next occurrence of the delimiter character.
+
+ 5) memcpy() function in C
+
+ Syntax:
+     void * memmove ( void * destination, const void * source, size_t num );
+
+ Brief:
+     memcpy(&s_data, &data, sizeof(data)); // If its int type use "&"
+     memcpy(s_data, data, sizeof(data));   // If its char type no need of "&"
+
+ 6) strcmp() in C:
+
+ Syntax: int strcmp (const char* str1, const char* str2)
+
+ Brief: 
+  a. char str1[] = "abcd", str2[] = "abcde"; --> (-ve value)
+  b. char str1[] = "abcde", str2[] = "abcd"; --> (+ve value)
+  c. char str1[] = "abcd", str2[] = "abcd"; --> (0)
