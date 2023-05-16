@@ -125,3 +125,7 @@ base − This is the base, which must be between 2 and 36 inclusive, or be the s
 
 Return Value
 This function returns the converted integral number as a long int value, else zero value is returned.
+
+15) FILE HANDLING: 
+fopen("hello.txt", "r");  --> CORRECT
+fopen("hello.txt", 'r'); --> WRONG
