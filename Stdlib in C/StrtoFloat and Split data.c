@@ -60,11 +60,12 @@ void main()
     printf("Enter the String to seperate: ");
     scanf("%s",enteredString);
     
-    char* data1=SplitString(enteredString,',',0);
-    char* data2=SplitString(enteredString,',',1);
+    char* data1=SplitString(enteredString,',',0); 
+    char* data2=SplitString(enteredString,',',1); 
     
     strtofloat(&divi,data1,data2); //store the val to struct
-    
+    free(data1);
+    free(data2);
     printf("Divided value : %0.2f\n",divi.Value1/divi.Value2);
     
 }
