@@ -1,4 +1,4 @@
-******************** VOID POINTER ****************
+/******************** VOID POINTER ****************/
 /*Void Pointer: It is a form of pointer which is used to point another variable of any data type.
  So, it can store the address of a variable of any data type.*/
  #include<stdio.h>
@@ -13,11 +13,13 @@
     printf("\nFloat variable is= %f", *( (float*) ptr) ); 
     return 0; 
 } 
+/*
 O/P: Integer variable is = 4
 Float variable is = 5.500000
+*/
 
-============================================================================================================================
-******************** ARRAY OF POINTERS****************
+//============================================================================================================================
+//******************** ARRAY OF POINTERS****************
 #include<stdio.h>
 int main() 
 { 
@@ -28,7 +30,7 @@ ptr1[0] = 1;
 *(1 + array) = 2;   // *(array) means array[0]
 array[2] = 4; 
 
-printf("%d\n",ptr1[0]);                       O/P: 1 2 2 4
+printf("%d\n",ptr1[0]);                      // O/P: 1 2 2 4
 printf("%d\n",*(array + 1));
 printf("%d\n",*(1 + array));
 printf("%d",array[2]);

@@ -1,0 +1,112 @@
+#include <stdio.h>
+#include <stdint.h>
+
+/* 64-bit words as they would be read from the IC (little-endian) */
+const uint64_t frames[] = {
+    0xFE42340C8F02F7FF,  /* valid │ ID=0x42 │ T=31.24 °C │ RH=65.5 % */
+    0xFE17C409E80331FF,  /* valid │ ID=0x17 │ T=25.00 °C │ RH=100.0 % */
+    0xAA55B80B710295FF,  /* **invalid head** (0xAA instead of 0xFE)    */
+    0xFE33AC0D5802C9FF   /* **invalid checksum**                        */
+};
+
+typedef union
+{
+    uint64_t raw;
+    struct __attribute((packed)) //keep it in reverse order byte
+    {
+        uint8_t tail;
+        uint8_t cksm;
+        uint16_t humd;
+        int16_t temp;
+        uint8_t id;
+        uint8_t head;
+    }bytes;
+} frame_t;
+
+typedef struct
+{
+    float temperature[4];
+    float humidity[4];
+    int Id[4];
+}data;
+
+int validCnt = 0;
+int inValidCnt = 0;
+
+frame_t getDecodedFrame(uint64_t x) //This function will automatically assign to struct
+{
+    frame_t decoded;
+    decoded.raw = x;
+    return decoded;
+}
+
+int extractData(const frame_t* fm)
+{
+    data d;
+    uint8_t checksum = fm->bytes.cksm;
+    checksum = fm->bytes.id ^ ((fm->bytes.temp >> 8)&0xff) ^ ((fm->bytes.temp)&0xff)
+                    ^ ((fm->bytes.humd >> 8)&0xff) ^ ((fm->bytes.humd)&0xff);
+    
+    if(fm->bytes.head == 0xfe && fm->bytes.tail == 0xff)
+    {
+        if(checksum == fm->bytes.cksm)
+        {
+            printf("checksum verified\n");
+            
+            int16_t t = ((fm->bytes.temp)&0xff) << 8 |
+                        ((fm->bytes.temp >> 8)&0xff);
+            d.temperature[validCnt] = (t) / 100.0;
+            // printf("Temp is: %0.2f deg C\n", d.temperature);
+            
+            uint16_t h = ((fm->bytes.humd)&0xff) << 8 |
+                ((fm->bytes.humd >> 8)&0xff);
+            d.humidity[validCnt] = (h) / 10.0;
+            // printf("hum is: %0.1f% \n", d.humidity);
+            
+            d.Id[validCnt] = fm->bytes.id;
+            validCnt++;
+            // printf(" Idx    ID  Temp(°C)  Hum(%RH)\n");
+            // printf(" ---    --  --------  --------\n");
+            // printf(" 1      %d  %0.2f     %0.1f \n",d.Id,d.temperature,d.humidity);
+            return 0;
+        }
+        else
+        {
+            printf("checksum not verified\n");
+            inValidCnt++;
+            return 2;
+        }
+    }
+    else
+    {
+        printf("Head & Tail error!\n");
+        inValidCnt++;
+        return 1;
+    }
+}
+
+void printFormat()
+{
+    data d;
+    printf(" Idx    ID  Temp(°C)  Hum(%RH)\n");
+    printf(" ---    --  --------  --------\n");
+    for(int i = 0; i < validCnt; i++)
+    {
+        printf(" %d      %d  %0.2f     %0.1f \n",validCnt, d.Id[i], d.temperature[i], d.humidity[i]);
+    }
+    printf("Invalid Frames: %d\n",inValidCnt);
+
+}
+
+int main()
+{
+    // frame_t f;
+    for(int i=0; i<3; i++)
+    {
+       frame_t f = getDecodedFrame(frames[i]); //don't forgot to assign to struct
+       extractData(&f);
+        printFormat();
+    }
+    return 0;
+}
+

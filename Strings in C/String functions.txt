@@ -69,3 +69,13 @@ Brief:
   a. char str1[] = "abcd", str2[] = "abcde"; --> (-ve value)
   b. char str1[] = "abcde", str2[] = "abcd"; --> (+ve value)
   c. char str1[] = "abcd", str2[] = "abcd"; --> (0)
+
+  7) strchr() in C
+
+  Syntax: char *strchr(const char *str, int c) (strchr("psd.com",'.'))
+
+  str - This is the C string to be scanned. //"psd.com"
+  c - This is the character to be searched in str. // '.'
+
+  Return: 
+    until NULL found  (.com)

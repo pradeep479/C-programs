@@ -1,4 +1,11 @@
-**********Program to calculate the sum of n numbers entered by the user using memory allocation*********
+/**********Program to calculate the sum of n numbers entered by the user using memory allocation*********/
+/*
+SYNTAX: int *variable = (int*)malloc(5*sizeof(int)) 
+* malloc() does not initialize the memory to zero
+* malloc() does not add any extra memory overhead
+*/
+
+
 #include <stdio.h>
 #include<stdlib.h>
 int a,*ptr,sum=0;
@@ -11,7 +18,7 @@ int main()
     ptr=(int*)malloc(a*sizeof(int));
     for(int i=0;i<a;i++)
     {
-        scanf("%d",ptr+i); // stores the numbers from base address of memory  
+        scanf("%d",ptr+i); // stores the numbers from base address of memory or &ptr[i]
          sum+= *(ptr+i);  // here *(ptr + i) is same as ptr[i]  
     }
 printf("sum is %d",sum);
@@ -20,31 +27,32 @@ printf("sum is %d",sum);
     return 0;
 }
 
+/*
 O/P: enter num: 3    1 2 3
 sum is :6
+*/
 
----------------------------------------------------------------------------------------------------------------------------
-*********
+//---------------------------------------------------------------------------------------------------------------------------
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-	int main()
-	{
-	    char* ptr;
-	    char array[] ="Pradeep Sriram";
-	    int len = strlen(array);
-	    
-	    ptr = (char*)malloc(len * sizeof(char));
-	    
-	    strcpy(ptr,array); // (or) puts(ptr);
-	    
-	    printf("%s",ptr);
-	   
-	   	return 0;
-	}
+int main()
+{
+	char* ptr;
+	char array[] ="Pradeep Sriram";
+	int len = strlen(array);
 	
-	O/P: Pradeep Sriram
-	=================================================================================================================================
+	ptr = (char*)malloc(len * sizeof(char));
+	
+	strcpy(ptr,array); // (or) puts(ptr);
+	
+	printf("%s",ptr);
+	
+	return 0;
+}
+
+//O/P: Pradeep Sriram
+=================================================================================================================================
 	
 	************************* MULTIPLE ARRAYS USING MALLOC************************
 	

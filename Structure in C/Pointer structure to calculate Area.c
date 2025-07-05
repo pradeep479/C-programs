@@ -30,7 +30,7 @@ int main()
 }
 
 
-O/P:
+// O/P:
 
-Enter Length and Breadth: 5 7
-Rectangle are is : 35
+// Enter Length and Breadth: 5 7
+// Rectangle are is : 35

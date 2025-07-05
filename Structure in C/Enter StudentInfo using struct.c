@@ -39,6 +39,7 @@ int main()
     return 0;
 }
 
+/*
 O/P:
 
 Enter Student name: Pradeep
@@ -56,3 +57,4 @@ Grade: 1
 Roll No: 90
 Name: Sriram
 Grade: 2
+*/

@@ -21,6 +21,7 @@ int main()
     return 0;
 }
 
+/*
 O/P:
 
 	BDAY CELEBRATION!!
@@ -29,3 +30,4 @@ Enter age: 23
 Bday boy name is: Pradeep
 
 !!!Happy 24th Bday Pradeep!!!
+*/
